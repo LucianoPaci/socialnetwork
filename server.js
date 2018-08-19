@@ -38,4 +38,4 @@ app.use('/api/posts', posts);
 
 const port = process.env.PORT || 5000 // Para heroku || Para local
 
-app.listen(port, () => console.log(`Server running on ${port}`));
+app.listen(port, () => console.log(`\n= = = = = = =\nServer running on ${port}\n= = = = = = =\n`));

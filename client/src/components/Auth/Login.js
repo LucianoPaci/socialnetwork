@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {loginUser} from '../../actions/authActions'
+import TextFieldGroup from '../common/TextFieldGroup'
 class Login extends Component {
 
     constructor() {
@@ -46,6 +47,7 @@ class Login extends Component {
     }
     this.props.loginUser(userData)
 }
+
   render() {
 
     const {errors} = this.state
@@ -57,28 +59,26 @@ class Login extends Component {
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Log In</h1>
               <p className="lead text-center">Sign in to your DevConnector account</p>
-              <form onSubmit = {this.onSubmit}>
+              <form onSubmit = {this.onSubmit} noValidate>
+
+               <TextFieldGroup 
+                  placeholder = "Email Address"
+                  name = "email"
+                  type = "email"
+                  value = {this.state.email}
+                  onChange = {this.onChangeHandler}
+                  error = {errors.login || errors.email}                
+                  />
+
                 <div className="form-group">
-                  <input 
-                    type="email" 
-                    className={errors.email ? 'form-control form-control-lg is-invalid':'form-control form-control-lg'} 
-                    placeholder="Email Address" 
-                    name="email"
-                    value = {this.state.email}
-                    onChange = {this.onChangeHandler}
-                     />
-                    {errors.email && (<div className = "invalid-feedback">{errors.email}</div>)}
-                </div>
-                <div className="form-group">
-                  <input 
-                    type="password" 
-                    className={errors.password ? 'form-control form-control-lg is-invalid':'form-control form-control-lg'} 
-                    placeholder="Password" 
-                    name="password" 
-                    value = {this.state.password}
-                    onChange = {this.onChangeHandler}
-                    />
-                     {errors.password && (<div className = "invalid-feedback">{errors.password}</div>)}
+
+                <TextFieldGroup 
+                  placeholder = "Password"
+                  name = "password"
+                  type = "password"
+                  value = {this.state.password}
+                  onChange = {this.onChangeHandler}
+                  error = {errors.login || errors.password} />
                 </div>
                 <input 
                     type="submit" 

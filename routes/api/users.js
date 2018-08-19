@@ -79,6 +79,7 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
 
     const { errors, isValid } = validateLoginInput(req.body)
+
     const email = req.body.email
     const password = req.body.password
 
@@ -94,7 +95,7 @@ router.post('/login', (req, res) => {
         .then(user => {
             // Check for user
             if (!user) {
-                errors.email = 'User not found'
+                errors.login = 'Incorrect user/password combination'
                 return res.status(404).json(errors)
             }
 
@@ -120,7 +121,7 @@ router.post('/login', (req, res) => {
                         })
                     }
                     else {
-                        errors.password = 'Password Incorrect'
+                        errors.login = 'Incorrect user/password combination'
                         return res.status(400).json(errors)
                     }
                 })

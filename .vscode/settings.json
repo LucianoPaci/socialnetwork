@@ -1,0 +1,30 @@
+{
+    "window.zoomLevel": 2,
+    "editor.minimap.enabled": false,
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true,
+        "suppressUpdateNotice": false,
+        "suppressWelcomeNotice": true,
+        "prettier.semi" : false
+    },
+    "gitlens.keymap": "alternate",
+    "explorer.confirmDragAndDrop": false,
+    "workbench.iconTheme": "vscode-icons",
+    "gitlens.historyExplorer.enabled": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "emmet.includeLanguages": {
+        "javascript" : "javascriptreact"
+    },
+    "emmet.syntaxProfiles": {
+        "javscript" : "jsx"
+    },
+    "editor.formatOnSave": true,
+    "prettier.semi": false
+}

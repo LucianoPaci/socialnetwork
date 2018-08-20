@@ -1,6 +1,7 @@
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './setAuthToken'
 import { setCurrentUser, logoutUser } from '../actions/authActions'
+import { clearCurrentProfile } from '../actions/profileActions'
 
 const checkAuthToken = (store) => {
      // Check for token 
@@ -17,7 +18,8 @@ const checkAuthToken = (store) => {
         if(decoded.exp < currentTime) {
         // Logout user
         store.dispatch(logoutUser())
-        // TODO: Clear current Profile
+        // Clear current Profile
+        store.dispatch(clearCurrentProfile())
         // Redirect to login
         window.location.href = '/login'
         }

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const InputGroup = ({ name, placeholder, value, error, icon, type, onChange, label }) => {
+const InputGroup = ({ name, placeholder, value, error, icon, type, onChange }) => {
 	return (
 		<div className="input-group mb-3">
 			<div className="input-group-prepend">
@@ -15,7 +15,6 @@ const InputGroup = ({ name, placeholder, value, error, icon, type, onChange, lab
 				name={name}
 				value={value}
 				onChange={onChange}
-				label={label}
 			/>
 			{error && <div className="invalid-feedback">{error}</div>}
 		</div>
@@ -26,7 +25,7 @@ InputGroup.propTypes = {
 	name: PropTypes.string.isRequired,
 	placeholder: PropTypes.string.isRequired,
 	type: PropTypes.string.isRequired,
-	value: PropTypes.string.isRequired,
+	value: PropTypes.string,
 	error: PropTypes.string,
 	icon: PropTypes.string,
 	onChange: PropTypes.func.isRequired

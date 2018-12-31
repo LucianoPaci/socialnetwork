@@ -1,41 +1,52 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const users = require('./routes/api/users');
-const profile = require('./routes/api/profile');
-const posts = require('./routes/api/posts');
-const passport = require('passport');
+const express = require('express')
+const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const users = require('./routes/api/users')
+const profile = require('./routes/api/profile')
+const posts = require('./routes/api/posts')
+const passport = require('passport')
+const path = require('path')
 
-const app = express();
+const app = express()
 
 // Body Parser middleware
 
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // DB Config
 const db = require('./config/keys').mongoURI
 
-
 // Connect to MongoDB through Mongoose
 
 mongoose
-    .connect(db, {useNewUrlParser: true})
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log(err))
+	.connect(db, { useNewUrlParser: true })
+	.then(() => console.log('MongoDB Connected'))
+	.catch((err) => console.log(err))
 
 // Passport middleware
-app.use(passport.initialize());
+app.use(passport.initialize())
 
 // Passport Config (JWT CONFIG)
 require('./config/passport')(passport)
 
 // Use Routes
 
-app.use('/api/users', users);
-app.use('/api/profile', profile);
-app.use('/api/posts', posts);
+app.use('/api/users', users)
+app.use('/api/profile', profile)
+app.use('/api/posts', posts)
 
-const port = process.env.PORT || 5000 // Para heroku || Para local
+// Server static assets if in production
+if (process.env.NODE_ENV === 'production') {
+	// Set static folder
 
-app.listen(port, () => console.log(`\n= = = = = = =\nServer running on ${port}\n= = = = = = =\n`));
+	app.use(express.static('client/build'))
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+	})
+}
+
+const port = process.env.PORT || 6000 // Para heroku || Para local
+
+app.listen(port, () => console.log(`\n= = = = = = =\nServer running on ${port}\n= = = = = = =\n`))
